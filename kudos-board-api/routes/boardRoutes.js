@@ -5,6 +5,7 @@ const controller = require("../controllers/boardController");
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
+router.get("/title/:title", controller.getByTitle)
 router.post("/create", controller.create);
 router.delete("/:id/delete", controller.remove);
 

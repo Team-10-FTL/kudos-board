@@ -1,5 +1,6 @@
 
-const prisma = require("../models/prismaClient")
+const prisma = require("@prisma/client")
+
 
 // get all boards
 exports.getAll = async (req, res) => {
@@ -23,6 +24,23 @@ exports.getAll = async (req, res) => {
     });
 
     res.json(boards)
+}
+
+exports.getByTitle = async (req, res) =>{
+    const title = req.params.title
+
+    const titleResults = await prisma.board.findMany({
+        where:{
+            title:{
+                constains: title
+            }
+        }
+    })
+
+    res.json(titleResults)
+
+
+
 }
 
 

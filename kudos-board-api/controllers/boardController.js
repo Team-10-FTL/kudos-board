@@ -32,7 +32,7 @@ exports.getByTitle = async (req, res) =>{
     const titleResults = await prisma.board.findMany({
         where:{
             title:{
-                constains: title
+                contains: title
             }
         }
     })

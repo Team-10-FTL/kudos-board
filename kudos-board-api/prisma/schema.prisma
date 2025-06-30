@@ -13,3 +13,41 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Board{
+  id        Int @id @default(autoincrement())
+  title     String
+  categories CategoriesOnBoards[]
+  cards     Card[]
+  imageUrl  String
+  createdAt DateTime @default(now())
+  
+}
+
+model Card{
+  id        Int @id @default(autoincrement())
+  message   String
+  board     Board @relation(fields: [boardId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  boardId   Int
+  gif       String // Image URL
+  upvotes   Int
+  createdAt DateTime @default(now())
+
+}
+
+model Category{
+  id      Int @id @default(autoincrement())
+  name    String
+  boards  CategoriesOnBoards[]
+}
+
+model CategoriesOnBoards{
+  board Board @relation(fields: [boardId], references: [id])
+  boardId Int
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([boardId, categoryId])
+}

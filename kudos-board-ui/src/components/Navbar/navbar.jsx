@@ -13,7 +13,7 @@ const NavBar = () =>{
     const handleOnChange = async() => {
         const title = Object.target.value
         setBoardTitle(title)
-        const response = await fetch(`http:localhost:${PORT}/title/${title}`)
+        const response = await fetch(`http:localhost:boards/${PORT}/title/${title}`)
         const data = await response.json()
 
         console.log(data)

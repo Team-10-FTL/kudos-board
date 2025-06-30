@@ -5,7 +5,7 @@ const controller = require("../controllers/boardController");
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getById);
-router.post("/", controller.create);
-router.delete("/:id", controller.remove);
+router.post("/create", controller.create);
+router.delete("/:id/delete", controller.remove);
 
 module.exports = router;

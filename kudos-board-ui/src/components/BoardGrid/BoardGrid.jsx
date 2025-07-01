@@ -6,7 +6,11 @@ function BoardGrid({boards}) {
 return (
     <div className="board-grid">
     {boards?.map((board) => (
-        <BoardCard key={board.id} board={board} />
+        <BoardCard 
+        key={board.id} 
+        board={board}
+        // onDelete={onDelete} 
+        />
     ))}
     </div>
 );

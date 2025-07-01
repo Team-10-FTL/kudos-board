@@ -1,7 +1,4 @@
-
-const prisma = require("@prisma/client")
-
-
+const prisma = require('../models/prismaClient')
 // get all boards
 exports.getAll = async (req, res) => {
 
@@ -32,7 +29,8 @@ exports.getByTitle = async (req, res) =>{
     const titleResults = await prisma.board.findMany({
         where:{
             title:{
-                contains: title
+                contains: title,
+                mode:'insensitive'
             }
         }
     })
@@ -51,7 +49,7 @@ exports.getById = async (req, res) => {
     if(!board){
         return res.status(404).json({error: "Not Found!"});
     } else {
-        res,json(board);
+        res.json(board);
     }
 }
 

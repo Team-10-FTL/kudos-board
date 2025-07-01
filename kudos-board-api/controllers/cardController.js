@@ -1,5 +1,6 @@
 // node.js -> backend connection with Prisma
-const prisma = require("@prisma/client");
+const prisma = require('../models/prismaClient')
+
 
 // display card
 exports.getCards = async (req, res) => {

@@ -24,18 +24,23 @@ exports.getAll = async (req, res) => {
 }
 
 exports.getByTitle = async (req, res) =>{
-    const title = req.params.title
+    try {
+        const title = req.params.title
 
-    const titleResults = await prisma.board.findMany({
-        where:{
-            title:{
-                contains: title,
-                mode:'insensitive'
+        const titleResults = await prisma.board.findMany({
+            where:{
+                title:{
+                    contains: title,
+                    mode:'insensitive'
+                }
             }
-        }
-    })
+        })
 
-    res.json(titleResults)
+        res.json(titleResults)
+    } catch (error) {
+        console.log(error.message)
+    }
+
 
 
 

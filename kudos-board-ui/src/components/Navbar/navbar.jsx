@@ -2,21 +2,36 @@ import "./navbar.css"
 
 import { useState, useEffect } from "react";
 
-require('dotenv').config()
 
-PORT = process.env.PORT
+
+const VITE_URL = import.meta.env.VITE_URL
 
 const NavBar = () =>{
     const [boardTitle, setBoardTitle] = useState("")
 
 
-    const handleOnChange = async() => {
-        const title = Object.target.value
-        setBoardTitle(title)
-        const response = await fetch(`http:localhost:boards/${PORT}/title/${title}`)
-        const data = await response.json()
+    const handleOnChange = async(e) => {
+        try {
 
-        console.log(data)
+            const title = e.target.value
+            setBoardTitle(title)
+
+            if (title.trim()){
+                const response = await fetch(`${VITE_URL}/boards/title/${title}`)
+                console.log("Fetching URL:", `${VITE_URL}/boards/title/${title}`)
+                console.log(response)
+                const data= await response.json()
+
+                console.log(data)
+
+            }else{
+                console.log("No title detected")
+            }
+            
+        } catch (error) {
+            console.log(error.message)
+        }
+
 
 
     }
@@ -27,9 +42,11 @@ const NavBar = () =>{
             name="search-bar"
             type="text"
             placeholder="Board Title"
-            onChange={handleOnChange()}
+            onChange={handleOnChange}
             />
         </div>
     )
 
 }
+
+    export default NavBar

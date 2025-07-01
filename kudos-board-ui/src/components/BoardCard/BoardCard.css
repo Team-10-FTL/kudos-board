@@ -1,0 +1,30 @@
+.BoardCard {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.BoardCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+}
+
+.media img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+}
+
+.board-Info {
+    padding: 12px;
+    text-align: center;
+}
+
+.board-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0; }

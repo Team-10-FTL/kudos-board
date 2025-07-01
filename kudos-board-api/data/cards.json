@@ -1,0 +1,58 @@
+{
+  "cards": [
+    {
+      "message": "Great job on the presentation yesterday! Your preparation really showed.",
+      "boardId": 1,
+      "gif": "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif",
+      "upvotes": 12
+    },
+    {
+      "message": "Thank you for staying late to help me debug that issue. Team player!",
+      "boardId": 1,
+      "gif": "https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif",
+      "upvotes": 8
+    },
+    {
+      "message": "Your positive attitude brightens everyone's day!",
+      "boardId": 1,
+      "gif": "https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+      "upvotes": 15
+    },
+    {
+      "message": "The new feature launch was flawless thanks to your thorough testing!",
+      "boardId": 2,
+      "gif": "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif",
+      "upvotes": 20
+    },
+    {
+      "message": "Client loved the design mockups. Outstanding work!",
+      "boardId": 2,
+      "gif": "https://media.giphy.com/media/3o7absbD7kbZXE2pyk/giphy.gif",
+      "upvotes": 18
+    },
+    {
+      "message": "Happy Birthday Sarah! Hope you have an amazing day! 🎉",
+      "boardId": 3,
+      "gif": "https://media.giphy.com/media/3o6fJ1BM7R2EBRDnxK/giphy.gif",
+      "upvotes": 25
+    },
+    {
+      "message": "Wishing you all the best on your special day! 🎂",
+      "boardId": 3,
+      "gif": "https://media.giphy.com/media/g5R9dok94mrIY/giphy.gif",
+      "upvotes": 22
+    },
+    {
+      "message": "Congratulations on 2 years with the company! Here's to many more!",
+      "boardId": 4,
+      "gif": "https://media.giphy.com/media/l0MYu38R0PPhIXe36/giphy.gif",
+      "upvotes": 30
+    },
+    {
+      "message": "Your dedication and hard work are truly appreciated!",
+      "boardId": 4,
+      "gif": "https://media.giphy.com/media/26BRBKqUiq586bRVm/giphy.gif",
+      "upvotes": 28
+    }
+  ]
+}

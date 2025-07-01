@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
-import NavBar from "../components/Navbar/navbar";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 function HomePage() {
     const [boards, setBoards] = useState([]);
     const [loading, setLoading] = useState(true);
-//     const VITE_URL = import.meta.env.VITE_URL
-//    console.log(VITE_URL)
+    const [boardTitle, setBoardTitle] = useState("");
+
+    const VITE_URL = import.meta.env.VITE_URL;
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/boards`)
+        axios.get(`${VITE_URL}/boards`)
         .then((res) => {
-            console.log(res.data); 
             setBoards(res.data);
             setLoading(false);
         })
@@ -20,22 +21,42 @@ function HomePage() {
 
     const handleDelete = (id) => {
         setBoards((prev) => prev.filter((board) => board.id !== id));
-    }
+    };
 
+    const handleOnChange = async (e) => {
+        try {
+            const title = e.target.value;
+            setBoardTitle(title);
+
+            if (title.trim()) {
+                const response = await fetch(`${VITE_URL}/boards/title/${title}`);
+                const data = await response.json();
+                setBoards(data);
+            } else {
+                // If search is cleared, reload all boards
+                const res = await fetch(`${VITE_URL}/boards`);
+                const data = await res.json();
+                setBoards(data);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     if (loading) return <div>Loading...</div>;
 
     return (
         <div>
-        {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
-        <NavBar/>
-        <BoardGrid 
-            boards={boards}
-            onDelete={handleDelete} />
-        {/* Footer */}
-        <h1>Home Page</h1>
+            {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
+            <SearchBar onChange={handleOnChange} value={boardTitle} />
+            <BoardGrid boards={boards} onDelete={handleDelete} />
+            {/* Footer */}
+            <h1>Home Page</h1>
         </div>
     );
+
+
+
 }
 
 export default HomePage;

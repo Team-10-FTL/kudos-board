@@ -1,4 +1,5 @@
 import Card from "../components/Card/Card.jsx";
+// add usenavigate
 
 // insert card grid stuff here
 

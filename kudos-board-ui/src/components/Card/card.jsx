@@ -2,7 +2,7 @@ import defaultImg from "../../assets/smiley.jpg";
 
 import "./card.css";
 
-function card({ card, addUpvote, deleteCard }) {
+function Card({ card, addUpvote, deleteCard }) {
   return (
     <div className="card">
       <div className="card-info">
@@ -31,4 +31,4 @@ function card({ card, addUpvote, deleteCard }) {
   );
 }
 
-export default card;
+export default Card;

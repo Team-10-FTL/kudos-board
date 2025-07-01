@@ -1,0 +1,17 @@
+{
+    "boards":[
+        {
+        "title": "Team Kudos Board",
+        "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400"
+      },{
+        "title": "Project Success Stories",
+        "imageUrl": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400"
+      },{
+        "title": "Work Anniversary",
+        "imageUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400"
+      },{
+        "title": "Birthday Wishes",
+        "imageUrl": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400"
+      }
+    ]
+}

@@ -4,54 +4,59 @@ import BoardGrid from "../components/BoardGrid/BoardGrid";
 import SearchBar from "../components/SearchBar/SearchBar";
 
 function HomePage() {
-  const [boardTitle, setBoardTitle] = useState("");
-  const [boards, setBoards] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const VITE_URL = import.meta.env.VITE_URL;
+    const [boards, setBoards] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [boardTitle, setBoardTitle] = useState("");
 
-  const handleOnChange = async (e) => {
-    try {
-      const title = e.target.value;
-      setBoardTitle(title);
+    const VITE_URL = import.meta.env.VITE_URL;
 
-      if (title.trim()) {
-        const response = await fetch(`${VITE_URL}/boards/title/${title}`);
-        console.log("Fetching URL:", `${VITE_URL}/boards/title/${title}`);
-        console.log(response);
-        const data = await response.json();
-        setBoards(data);
+    useEffect(() => {
+        axios.get(`${VITE_URL}/boards`)
+        .then((res) => {
+            setBoards(res.data);
+            setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    }, []);
 
-        console.log(data);
-      } else {
-        console.log("No title detected");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    const handleDelete = (id) => {
+        setBoards((prev) => prev.filter((board) => board.id !== id));
+    };
 
-  useEffect(() => {
-    axios
-      .get(`${VITE_URL}/boards`)
-      .then((res) => {
-        console.log(res.data);
-        setBoards(res.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [boards]);
+    const handleOnChange = async (e) => {
+        try {
+            const title = e.target.value;
+            setBoardTitle(title);
 
-  if (loading) return <div>Loading...</div>;
+            if (title.trim()) {
+                const response = await fetch(`${VITE_URL}/boards/title/${title}`);
+                const data = await response.json();
+                setBoards(data);
+            } else {
+                // If search is cleared, reload all boards
+                const res = await fetch(`${VITE_URL}/boards`);
+                const data = await res.json();
+                setBoards(data);
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
-  return (
-    <div>
-      {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
-      <SearchBar onChange={handleOnChange} />
-      <BoardGrid boards={boards} />
-      {/* Footer */}
-      <h1>Home Page</h1>
-    </div>
-  );
+    if (loading) return <div>Loading...</div>;
+
+    return (
+        <div>
+            {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
+            <SearchBar onChange={handleOnChange} value={boardTitle} />
+            <BoardGrid boards={boards} onDelete={handleDelete} />
+            {/* Footer */}
+            <h1>Home Page</h1>
+        </div>
+    );
+
+
+
 }
 
 export default HomePage;

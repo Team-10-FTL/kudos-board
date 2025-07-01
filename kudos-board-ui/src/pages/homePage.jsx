@@ -5,9 +5,10 @@ import BoardGrid from "../components/BoardGrid/BoardGrid";
 function HomePage() {
 const [boards, setBoards] = useState([]);
 const [loading, setLoading] = useState(true);
+const VITE_URL = import.meta.env.VITE_URL
 
 useEffect(() => {
-    axios.get("http://localhost:3000/boards")
+    axios.get(`${VITE_URL}/boards`)
     .then((res) => {
         console.log(res.data); 
         setBoards(res.data);

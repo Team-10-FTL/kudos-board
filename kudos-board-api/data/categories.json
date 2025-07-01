@@ -1,0 +1,9 @@
+{
+    "categories":[
+        {"name": "All"},
+        { "name": "Recent" },
+        { "name": "Celebration" },
+        { "name": "Thank You" },
+        { "name": "Insperation" }
+    ]
+}

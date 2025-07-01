@@ -3,7 +3,10 @@ const app = express();
 require("dotenv").config();
 const boardRoutes = require("../routes/boardRoutes");
 const cardRoutes = require("../routes/cardRoutes");
+const cors= require('cors')
 
+
+app.use(cors())
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {

@@ -5,17 +5,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import BoardPage from "../../pages/BoardPage";
 import HomePage from "../../pages/HomePage";
+import { CustomThemeProvider } from "../UISwitch/ThemeContext.jsx";
+
+
+
+const muiTheme = createTheme({  // ✅ Create MUI theme object
+  palette: {
+    mode: 'light',
+  },
+});
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/homepage/:id" element={<BoardPage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <CustomThemeProvider>
+      <ThemeProvider theme={muiTheme}>
+          <div>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/homepage/:id" element={<BoardPage />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ThemeProvider>
+
+    </CustomThemeProvider>
+
   );
 }
 

@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const boardRoutes = require("../routes/boardRoutes");
 const cardRoutes = require("../routes/cardRoutes");
+const categoryRoutes = require('../routes/categoryRoutes');
 const cors= require('cors')
 
 
@@ -21,6 +22,9 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use("/boards", boardRoutes);
 app.use("/cards", cardRoutes);
+app.use('/categories', categoryRoutes);
+
+
 
 app.listen(PORT, () => {
   try {

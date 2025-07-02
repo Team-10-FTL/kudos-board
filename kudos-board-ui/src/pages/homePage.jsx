@@ -28,12 +28,21 @@ function HomePage() {
 
   return (
     <div>
+      <header>
         <h1>Home Page</h1>
 
+        <NavBar setBoards={setBoards}/>
+
+      </header>
+
       {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
-      <NavBar setBoards={setBoards}/>
+      
       <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
+
+      <footer>
+        <p>&copy; 2025 Kudos Board. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

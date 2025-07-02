@@ -6,16 +6,27 @@ import "./CreateBoardModal.css";
 function CreateBoardModal({ onClose, onBoardCreated}){
 
     const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("");
+    const [categoryId, setCategoryId] = useState("");
     const [author, setAuthor] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState("");
+    const [categories, setCategories] = useState([]);
     const VITE_URL = import.meta.env.VITE_URL;
 
 
-    const handleSubmit = async(e) => {
-        e.preventDEfault();
+    useEffect(() => {
 
-        if (!title.trim() || !category.trim()){
+        axios.get(`${VITE_URL}/categories`)
+        .then(res => setCategories(res.data))
+        .catch(()=> setCategories([]))
+
+    }, [VITE_URL])
+
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        if (!title.trim() || !categoryId.trim()){
             setError("Title and Category are required")
             return;
         }
@@ -23,7 +34,8 @@ function CreateBoardModal({ onClose, onBoardCreated}){
         try {
             const response = await axios.post(`${VITE_URL}/boards`, {
                 title,
-                category,
+                imageUrl,
+                categoryIds: [parseInt(categoryId, 10)],
                 author,
             });
             onBoardCreated(response.data);// basically a call to update the board grid on page
@@ -55,19 +67,31 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                     </label>
                     <label>
                         Category:
-                        <input 
-                            type="text"
-                            value={category}
-                            onChange={e => setCategory(e.target.value)}
+                        <select
+                            value={categoryId}
+                            onChange={e => setCategoryId(e.target.value)}
                             required
-                        />
+                        >
+                            <option value="">Select a category</option>
+                            {categories.map(cat => (
+                                <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            ))}
+                        </select>
                     </label>
                     <label>
-                        Author
+                        Author:
                         <input 
                             type="text"
                             value={author}
-                            onChange={(e => setCategory(e.target.value))}
+                            onChange={(e => setAuthor(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Image URL:
+                        <input 
+                            type="text"
+                            value={imageUrl}
+                            onChange={e => setImageUrl(e.target.value)}
                             required
                         />
                     </label>
@@ -81,3 +105,5 @@ function CreateBoardModal({ onClose, onBoardCreated}){
 
 
 }
+
+export default CreateBoardModal;

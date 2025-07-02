@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import SearchBar from "../components/SearchBar/SearchBar";
+import CreateBoardModal from "../components/CreateBoardModal/CreateBoardModal";
 
 function HomePage() {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [boardTitle, setBoardTitle] = useState("");
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const VITE_URL = import.meta.env.VITE_URL;
 
   useEffect(() => {
@@ -56,6 +57,16 @@ function HomePage() {
     }
   };
 
+  const handleOpenModal = async () => setIsModalOpen(true); // can maybe call this in the actual button clicks
+  
+  const handleCloseModal = async () => setIsModalOpen(false);
+
+  const handleBoardCreate = (newBoard) => {
+      setBoards((prev)=>[...prev, newBoard]);
+      setIsModalOpen(false);
+  }
+  
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -68,6 +79,17 @@ function HomePage() {
         value={boardTitle}
         handleClearSearch={handleClearSearch}
       />
+      <div>
+        <button onClick={handleOpenModal}>Add New Board</button>
+      </div>
+      {isModalOpen && (
+        <CreateBoardModal 
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        onBoardCreated={handleBoardCreate}
+      />
+      )}
+      
       <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
     </div>

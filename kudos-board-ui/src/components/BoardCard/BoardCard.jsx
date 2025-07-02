@@ -5,15 +5,12 @@ import "./BoardCard.css"
 function BoardCard({ board }){
     const VITE_URL = import.meta.env.VITE_URL;
 
-    // const handleDelete = async() => {
-    //     await axios.delete(`${VITE_URL}/boards/${board.id}/delete`);
-    //     onDelete(board.id);
-    // }
-
-
+    const handleDelete = async() => {
+        await axios.delete(`${VITE_URL}/boards/${board.id}`);
+        onDelete(board.id);
+    }
 
     return(
-
         <div className="BoardCard">
             <div className="media">
                 <Link to={`/homepage/${board.id}`}>
@@ -23,11 +20,9 @@ function BoardCard({ board }){
             </div>
             <div className="board-Info">
             <p className="board-name">{board.title}</p>
-            {/* <button className="delete-btn" onClick={handleDelete}>Delete</button> */}
+            <button className="delete-btn" onClick={handleDelete}>Delete</button>
             </div>
-
         </div>
-
     )
 
 }

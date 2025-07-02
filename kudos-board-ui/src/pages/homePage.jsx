@@ -60,6 +60,8 @@ function HomePage() {
 
   return (
     <div>
+        <h1>Home Page</h1>
+
       {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
       <SearchBar
         onChange={handleOnChange}
@@ -68,7 +70,6 @@ function HomePage() {
       />
       <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
-      <h1>Home Page</h1>
     </div>
   );
 }

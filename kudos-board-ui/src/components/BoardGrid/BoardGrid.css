@@ -3,4 +3,11 @@
     flex-wrap: wrap;
     gap: 24px;
     justify-content: center;
-    margin: 32px 0; }
+    margin: 32px 0; 
+    border-radius: 8px;          /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Add shadow */    
+
+}
+
+
+    

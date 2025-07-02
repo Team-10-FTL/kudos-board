@@ -1,4 +1,5 @@
 import BoardCard from "../BoardCard/BoardCard";
+import "./BoardGrid.css"
 
 function BoardGrid({boards, onDelete}) {
     console.log("Boards: ",boards)

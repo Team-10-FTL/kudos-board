@@ -6,6 +6,7 @@ import "./App.css";
 import BoardPage from "../../pages/BoardPage";
 import HomePage from "../../pages/HomePage";
 import { CustomThemeProvider } from "../UISwitch/ThemeContext.jsx";
+import { createTheme, ThemeProvider } from "@mui/material/styles"; 
 
 
 

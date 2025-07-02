@@ -1,6 +1,6 @@
 import BoardCard from "../BoardCard/BoardCard";
 
-function BoardGrid({boards}) {
+function BoardGrid({boards, onDelete}) {
     console.log("Boards: ",boards)
     console.log("type of boards"+ typeof(boards))
 return (
@@ -9,7 +9,7 @@ return (
         <BoardCard 
         key={board.id} 
         board={board}
-        // onDelete={onDelete} 
+        onDelete={onDelete} 
         />
     ))}
     </div>

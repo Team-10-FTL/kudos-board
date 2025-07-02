@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./BoardCard.css";
 
-function BoardCard({ board }){
+function BoardCard({ board, onDelete }){
     const VITE_URL = import.meta.env.VITE_URL;
 
     const handleDelete = async() => {

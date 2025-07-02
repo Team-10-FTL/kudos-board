@@ -59,7 +59,6 @@ function HomePage() {
         onBoardCreated={handleBoardCreate}
       />
       )}
-      <NavBar setBoards={setBoards}/>
       <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
 

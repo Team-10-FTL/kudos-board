@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./card.css";
 
 // NOTE: error check delete logic once more cards are added
+const VITE_URL = import.meta.env.VITE_URL;
 
 function Card({ card, addUpvote, onDelete }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -25,7 +26,7 @@ function Card({ card, addUpvote, onDelete }) {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/cards/${card.id}`);
+      await axios.delete(`${VITE_URL}/cards/${card.id}`);
       onDelete(card.id);
     } catch (e) {
       console.log("Failed to delete card: ", e);

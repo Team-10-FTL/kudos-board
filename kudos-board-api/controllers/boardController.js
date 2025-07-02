@@ -19,6 +19,13 @@ exports.getAll = async (req, res) => {
     const boards = await prisma.board.findMany({
         where,
         orderBy: orderBy.length ? orderBy : undefined,
+        include:{
+            categories:{
+                include:{
+                    category:true
+                }
+            }
+        }
     });
 
     res.json(boards)
@@ -35,7 +42,14 @@ exports.getByTitle = async (req, res) =>{
                     contains: title,
                     mode:'insensitive'
                 }
+            },
+            include:{
+            categories:{
+                include:{
+                    category:true
+                }
             }
+        }
         })
 
         res.json(titleResults)
@@ -48,7 +62,14 @@ exports.getByTitle = async (req, res) =>{
 // get board by ID
 exports.getById = async (req, res) => {
     const id = Number(req.params.id);
-    const board = await prisma.board.findUnique({where: {id}});
+    const board = await prisma.board.findUnique({where: {id},
+    include:{
+            categories:{
+                include:{
+                    category:true
+                }
+            }
+        }});
     if(!board){
         return res.status(404).json({error: "Not Found!"});
     } else {

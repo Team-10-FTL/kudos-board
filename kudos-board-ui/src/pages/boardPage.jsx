@@ -1,43 +1,76 @@
 import Card from "../components/Card/Card.jsx";
-// add usenavigate
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 // insert card grid stuff here
+function BoardPage() {
+  const { id: boardId } = useParams();
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
-function BoardPage({ cards }) {
-  // may need to add empty array?
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/cards");
+        const allCards = res.data;
 
-  const removeCard = (board, card) => {
-    // this isn't done yet!! update
-    const newBoard = {
-      ...board,
-      [card.id]: board[card.id] - 1,
+        const boardCards = allCards.filter((card) => card.boardId == boardId);
+        setCards(boardCards);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoading(false);
+      }
     };
-    if (!newBoard[card.id]) {
-      delete newBoard[card.id];
-    }
+    fetchCards();
+  }, [boardId]);
 
-    return newBoard;
+  if (loading) return <p>Loading cards...</p>;
+
+  const addUpvote = async (card) => {
+    try {
+      const res = await axios.put(`http://localhost:3000/cards/${card.id}`);
+      const updatedCard = res.data;
+
+      setCards((prevCards) =>
+        prevCards.map((c) => (c.id === updatedCard.id ? updatedCard : c))
+      );
+    } catch (err) {
+      console.error("Upvote failed:", err);
+    }
   };
 
   return (
-    <div className="cardGrid">
-      {!cards?.length ? (
-        <div className="card">
-          <p>No cards available in this board</p>
-        </div>
-      ) : (
-        cards.map((card) => (
-          <Card
-            key={card.id}
-            boardId={card.boardId}
-            message={card.message}
-            upvotes={card.upvotes}
-            gif={card.gif}
-            removeCard={() => removeCard(card)}
-          />
-        ))
+    <>
+      <div className="cardGrid">
+        {!cards?.length ? (
+          <div className="card">
+            <p>No cards available in this board</p>
+          </div>
+        ) : (
+          cards.map((card) => (
+            <Card
+              key={card.id}
+              card={card}
+              addUpvote={() => addUpvote(card)}
+              onDelete={() => setCardToDelete(card.id)}
+            />
+          ))
+        )}
+      </div>
+      {cardToDelete && (
+        <Card
+          cardId={cardToDelete}
+          onDelete={(deletedId) => {
+            setCards((prev) => prev.filter((card) => card.id !== deletedId));
+            setCardToDelete(null);
+          }}
+          onCancel={() => setCardToDelete(null)}
+        />
       )}
-    </div>
+    </>
   );
 }
 export default BoardPage;

@@ -1,6 +1,5 @@
 // node.js -> backend connection with Prisma
-const prisma = require('../models/prismaClient')
-
+const prisma = require("../models/prismaClient");
 
 // display card
 exports.getCards = async (req, res) => {
@@ -32,14 +31,13 @@ exports.createCard = async (req, res) => {
   }
 };
 
-// upvote card
+// upvote card UPDATE
 exports.upvoteCard = async (req, res) => {
   try {
     const id = Number(req.params.id);
-    const { message, board, boardId, gif, upvotes } = req.body;
     const updatedCard = await prisma.card.update({
       where: { id },
-      data: { message, board, boardId, gif, upvotes },
+      data: { upvotes: { increment: 1 } },
     });
     res.json(updatedCard);
   } catch (err) {

@@ -1,13 +1,14 @@
 import "./SearchBar.css";
 
 import { useState, useEffect } from "react";
-
+import "./SearchBar.css"
 const VITE_URL = import.meta.env.VITE_URL;
 
 const SearchBar = ({ onChange, value, handleClearSearch }) => {
   return (
-    <div>
+    <div className="search-container">
       <input
+      className="search-bar"
         name="search-bar"
         type="text"
         placeholder="Board Title"

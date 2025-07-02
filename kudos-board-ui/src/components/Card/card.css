@@ -1,0 +1,28 @@
+.cardGrid {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 0px;
+}
+
+.card {
+  width: 325px;
+}
+
+.card .info {
+  padding-bottom: 10px;
+  margin: 0 auto;
+  width: 85%;
+}
+
+.card img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+.card-info .upvoteBtn {
+  margin-right: 5px;
+}
+.card-info .deleteBtn {
+  margin-left: 5px;
+}

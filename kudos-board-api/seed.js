@@ -32,7 +32,10 @@ async function main() {
   );
     const boards = await Promise.all(
     boardsData.boards.map(board => 
-      prisma.board.create({ data: board })
+      prisma.board.create({ data: {
+        title: board.title,
+        imageUrl: board.imageUrl
+      } })
     )
   );
   const cards = await Promise.all(
@@ -47,61 +50,65 @@ async function main() {
   );
 
   // Create Category-Board relationships
-  await Promise.all([
-    // Team Kudos Board - Work & Team Building
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[0].id,
-        categoryId: categories[0].id, // Work
-        assignedBy: "Nathan"
-      }
-    }),
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[0].id,
-        categoryId: categories[2].id, // Team Building
-        assignedBy: "Nathan"
-      }
-    }),
-    // Project Success Stories - Work & Appreciation
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[1].id,
-        categoryId: categories[0].id, // Work
-        assignedBy: "Nathan"
-      }
-    }),
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[1].id,
-        categoryId: categories[3].id, // Appreciation
-        assignedBy: "Nathan"
-      }
-    }),
-    // Birthday Wishes - Personal
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[2].id,
-        categoryId: categories[1].id, // Personal
-        assignedBy: "Nathan"
-      }
-    }),
-    // Work Anniversary - Work & Milestone
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[3].id,
-        categoryId: categories[0].id, // Work
-        assignedBy: "Nathan"
-      }
-    }),
-    prisma.categoriesOnBoards.create({
-      data: {
-        boardId: boards[3].id,
-        categoryId: categories[4].id, // Milestone
-        assignedBy: "Nathan"
-      }
-    })
-  ]);
+// Create Category-Board relationships
+await Promise.all([
+  // Team Kudos Board - Celebration & Thank You
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[0].id,
+      categoryId: categories[2].id, // Celebration (index 2)
+      assignedBy: "Nathan"
+    }
+  }),
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[0].id,
+      categoryId: categories[3].id, // Thank You (index 3)
+      assignedBy: "Nathan"
+    }
+  }),
+  
+  // Project Success Stories - Thank You & Inspiration
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[1].id,
+      categoryId: categories[3].id, // Thank You (index 3)
+      assignedBy: "Nathan"
+    }
+  }),
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[1].id,
+      categoryId: categories[4].id, // Insperation (index 4)
+      assignedBy: "Nathan"
+    }
+  }),
+  
+  // Work Anniversary - Celebration & Thank You
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[2].id,
+      categoryId: categories[2].id, // Celebration (index 2)
+      assignedBy: "Nathan"
+    }
+  }),
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[2].id,
+      categoryId: categories[3].id, // Thank You (index 3)
+      assignedBy: "Nathan"
+    }
+  }),
+  
+  // Birthday Wishes - Celebration
+  prisma.categoriesOnBoards.create({
+    data: {
+      boardId: boards[3].id,
+      categoryId: categories[2].id, // Celebration (index 2)
+      assignedBy: "Nathan"
+    }
+  })
+]);
 
 
 

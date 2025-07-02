@@ -8,9 +8,11 @@ import "./card.css";
 const VITE_URL = import.meta.env.VITE_URL;
 
 function Card({ card, addUpvote, onDelete }) {
+  // delete
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogRef = useRef(null);
 
+  // delete card functionality
   useEffect(() => {
     if (dialogRef.current) {
       if (isDialogOpen) {
@@ -20,6 +22,9 @@ function Card({ card, addUpvote, onDelete }) {
       }
     }
   }, [isDialogOpen]);
+
+  // avoids delete creating a re-render
+  if (!card) return null;
 
   const openDialog = () => setIsDialogOpen(true);
   const closeDialog = () => setIsDialogOpen(false);

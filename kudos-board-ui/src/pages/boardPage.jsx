@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const VITE_URL = import.meta.env.VITE_URL;
+
 // insert card grid stuff here
 function BoardPage() {
   const { id: boardId } = useParams();
@@ -13,7 +15,7 @@ function BoardPage() {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/cards");
+        const res = await axios.get(`${VITE_URL}/cards`);
         const allCards = res.data;
 
         const boardCards = allCards.filter((card) => card.boardId == boardId);
@@ -31,7 +33,7 @@ function BoardPage() {
 
   const addUpvote = async (card) => {
     try {
-      const res = await axios.put(`http://localhost:3000/cards/${card.id}`);
+      const res = await axios.put(`${VITE_URL}/cards/${card.id}`);
       const updatedCard = res.data;
 
       setCards((prevCards) =>

@@ -2,7 +2,7 @@ import "./NavBar.css"
 import SearchBar from "../SearchBar/SearchBar"
 import { useState } from "react";
 import FilterDropDown from "../FilterDropDown/FilterDropDown";
-
+import UISwitch from "../UISwitch/UISwitch";
 const NavBar = ({setBoards}) =>{
     const VITE_URL = import.meta.env.VITE_URL;  
     const [boardTitle, setBoardTitle] = useState("");
@@ -73,6 +73,7 @@ const NavBar = ({setBoards}) =>{
             value={boardTitle}
             handleClearSearch={handleClearSearch}
             />
+            <UISwitch/>
         </div>
 
     )

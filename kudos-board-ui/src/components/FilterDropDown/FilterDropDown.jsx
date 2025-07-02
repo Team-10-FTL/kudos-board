@@ -33,7 +33,7 @@ export default function FilterDropDown({handleChange}) {
           <MenuItem value={"Recent"}>Recent</MenuItem>
           <MenuItem value={"Celebration"}>Celebration</MenuItem>
             <MenuItem value={"Thank You"}>Thank You</MenuItem>
-          <MenuItem value={"Insperation"}>Insperation</MenuItem>
+          <MenuItem value={"Inspiration"}>Inspiration</MenuItem>
 
         </Select>
       </FormControl>

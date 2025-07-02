@@ -1,6 +1,5 @@
-
-import { Link } from "react-router-dom"
-import "./BoardCard.css"
+import { Link } from "react-router-dom";
+import "./BoardCard.css";
 
 function BoardCard({ board }){
     const VITE_URL = import.meta.env.VITE_URL;
@@ -24,7 +23,6 @@ function BoardCard({ board }){
             </div>
         </div>
     )
-
 }
 
 export default BoardCard;

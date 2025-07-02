@@ -21,9 +21,14 @@ exports.getCard = async (req, res) => {
 // create card
 exports.createCard = async (req, res) => {
   try {
-    const { id, message, board, boardId, gif, upvotes } = req.body;
+    const { boardId, message, gif, upvotes } = req.body;
     const newCard = await prisma.card.create({
-      data: { id, message, board, boardId, gif, upvotes },
+      data: {
+        boardId: Number(boardId),
+        message,
+        gif,
+        upvotes,
+      },
     });
     res.status(201).json(newCard);
   } catch (err) {

@@ -1,17 +1,27 @@
 import Card from "../components/Card/Card.jsx";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const VITE_URL = import.meta.env.VITE_URL;
 
 // insert card grid stuff here
 function BoardPage() {
+  // add
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const dialogRef = useRef(null);
+  const [message, setMessage] = useState("");
+
   const { id: boardId } = useParams();
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cardToDelete, setCardToDelete] = useState(null);
 
+  // search gifs
+  const [searchInput, setSearchInput] = useState("");
+  const [options, setOptions] = useState(null);
+  const [selectedGif, setSelectedGif] = useState(null);
+
+  // fetch all cards wtih boardId
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -19,7 +29,16 @@ function BoardPage() {
         const allCards = res.data;
 
         const boardCards = allCards.filter((card) => card.boardId == boardId);
+
         setCards(boardCards);
+
+        if (dialogRef.current) {
+          if (isDialogOpen) {
+            dialogRef.current.showModal();
+          } else {
+            dialogRef.current.close();
+          }
+        }
       } catch (e) {
         console.log(e);
       } finally {
@@ -27,10 +46,74 @@ function BoardPage() {
       }
     };
     fetchCards();
-  }, [boardId]);
+  }, [boardId, isDialogOpen]);
 
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => {
+    setIsDialogOpen(false);
+    setMessage("");
+    setSearchInput("");
+    setOptions([]);
+    setSelectedGif(null);
+  };
+
+  // loading state
   if (loading) return <p>Loading cards...</p>;
 
+  // GIPHY API search results
+  const fetchGifs = async (query) => {
+    try {
+      console.log("testing fetching gifs");
+      const { data } = await axios.get(`https://api.giphy.com/v1/gifs/search`, {
+        params: {
+          api_key: `${import.meta.env.VITE_API_KEY}`,
+          q: query,
+          limit: 5,
+        },
+      });
+      setOptions(data.data);
+    } catch (error) {
+      console.log("Error fetching GIF from API", error);
+    }
+  };
+
+  // API request sent
+  const handleSearchInput = async (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    if (value.trim()) {
+      await fetchGifs(value);
+    } else {
+      setOptions([]); // clear if input is empty
+    }
+  };
+
+  //add functionality
+  const confirmAdd = async () => {
+    try {
+      const res = await axios.post(`${VITE_URL}/cards`, {
+        boardId,
+        message: message,
+        gif: selectedGif.images.fixed_height.url,
+        upvotes: 0,
+      });
+
+      const newCard = res.data;
+      setCards((prev) => [...prev, newCard]); // add new card to bottom of list
+
+      setIsDialogOpen(false);
+      setMessage("");
+      setSearchInput("");
+      setOptions([]);
+      setSelectedGif(null);
+    } catch (e) {
+      console.log("Failed to add card: ", e);
+    } finally {
+      setIsDialogOpen(false);
+    }
+  };
+
+  // upvote functionality
   const addUpvote = async (card) => {
     try {
       const res = await axios.put(`${VITE_URL}/cards/${card.id}`);
@@ -46,6 +129,9 @@ function BoardPage() {
 
   return (
     <>
+      <button className="createCard" onClick={openDialog}>
+        Create Card
+      </button>
       <div className="cardGrid">
         {!cards?.length ? (
           <div className="card">
@@ -57,21 +143,53 @@ function BoardPage() {
               key={card.id}
               card={card}
               addUpvote={() => addUpvote(card)}
-              onDelete={() => setCardToDelete(card.id)}
+              onDelete={(deletedId) =>
+                setCards((prev) => prev.filter((card) => card.id !== deletedId))
+              }
             />
           ))
         )}
       </div>
-      {cardToDelete && (
-        <Card
-          cardId={cardToDelete}
-          onDelete={(deletedId) => {
-            setCards((prev) => prev.filter((card) => card.id !== deletedId));
-            setCardToDelete(null);
+      <dialog ref={dialogRef} onCancel={closeDialog}>
+        Message:{" "}
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => {
+            setMessage(e.target.value);
           }}
-          onCancel={() => setCardToDelete(null)}
-        />
-      )}
+          required
+        ></input>
+        Search for GIF:{" "}
+        <input
+          onClick={fetchGifs}
+          type="text"
+          value={searchInput}
+          onChange={handleSearchInput}
+        ></input>
+        <div className="gif-options">
+          {options?.length > 0 && (
+            <div className="gif-list">
+              {options.map((gif) => (
+                <img
+                  key={gif.id}
+                  src={gif.images.fixed_height_small.url}
+                  alt="GIF"
+                  onClick={() => setSelectedGif(gif)}
+                  style={{
+                    cursor: "pointer",
+                    border:
+                      selectedGif?.id === gif.id ? "2px solid blue" : "none",
+                    margin: "4px",
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        <button onClick={confirmAdd}>Add Card</button>
+        <button onClick={closeDialog}>Cancel</button>
+      </dialog>
     </>
   );
 }

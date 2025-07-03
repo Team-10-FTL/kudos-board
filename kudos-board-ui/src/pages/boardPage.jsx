@@ -1,4 +1,4 @@
-import Card from "../components/Card/Card.jsx";
+import Card from "../components/Card/card.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";

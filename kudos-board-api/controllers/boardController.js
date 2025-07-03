@@ -108,8 +108,20 @@ exports.create = async (req, res) => {
 // delete
 exports.remove = async (req, res) => {
     const id = Number(req.params.id);
-    await prisma.board.delete({
-        where: {id}
-    });
-    res.status(204).end();
+
+    try {
+        // delete related records from categoriesOnBoard else it causes error on delete
+        await prisma.categoriesOnBoards.deleteMany({
+            where: { boardId: id}
+        });
+        // THEN delete the board
+        await prisma.board.delete({
+            where: {id}
+        });
+        res.status(204).end();
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: error.message});
+    }
 }

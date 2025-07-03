@@ -61,12 +61,7 @@ function HomePage() {
         )}
         <BoardGrid boards={boards} onDelete={handleDelete} />
       </div>
-        <CreateBoardModal
-          open={isModalOpen}
-          onClose={handleCloseModal}
-          onBoardCreated={handleBoardCreate}
-        />
-      )}
+
       <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
 

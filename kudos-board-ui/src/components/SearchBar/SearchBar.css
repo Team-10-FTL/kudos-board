@@ -5,7 +5,7 @@
   gap: 10px; /* Space between input and button */
   width: 100%;
   max-width: 300px;
-  margin: 20px auto; /* Center the search bar */
+  /* margin: 20px auto; Center the search bar */
 }
 
 .search-bar {

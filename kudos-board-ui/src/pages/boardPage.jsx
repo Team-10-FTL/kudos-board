@@ -135,11 +135,22 @@ function BoardPage() {
         <a href="/">
           <img src={kudos} className="logo"></img>
         </a>
-        <UISwitch />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px 0",
+            gap: "20px",
+          }}
+        >
+          <div style={{ marginBottom: "20px" }}>
+            <UISwitch />
+          </div>
+          <button className="createCard" onClick={openDialog}>
+            Create Card
+          </button>
+        </div>
       </header>
-      <button className="createCard" onClick={openDialog}>
-        Create Card
-      </button>
       <div className="cardGrid">
         {!cards?.length ? (
           <div className="card">

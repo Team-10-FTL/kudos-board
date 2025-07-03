@@ -8,7 +8,6 @@ import kudos from "../assets/kudos.png";
 function HomePage() {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [boardTitle, setBoardTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const VITE_URL = import.meta.env.VITE_URL;
 
@@ -45,22 +44,18 @@ function HomePage() {
 
         <NavBar setBoards={setBoards} />
       </header>
-
       <div>
-
-      {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
-      <div></div>
-      {isModalOpen && (
-        <CreateBoardModal 
-        open={isModalOpen}
-        onClose={handleCloseModal}
-        onBoardCreated={handleBoardCreate}
-        />
+        {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
+        <div></div>
+        {isModalOpen && (
+          <CreateBoardModal
+            open={isModalOpen}
+            onClose={handleCloseModal}
+            onBoardCreated={handleBoardCreate}
+          />
         )}
         <BoardGrid boards={boards} onDelete={handleDelete} />
       </div>
-
-      {/* Footer */}
 
       <button className="newBoardBtn" onClick={handleOpenModal}>
         add new board +

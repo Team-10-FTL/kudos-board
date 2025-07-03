@@ -45,9 +45,7 @@ function HomePage() {
 
         <NavBar setBoards={setBoards} />
       </header>
-      <div>
-        <button onClick={handleOpenModal}>Add New Board</button>
-      </div>
+
       <div>
 
       {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
@@ -62,7 +60,6 @@ function HomePage() {
         <BoardGrid boards={boards} onDelete={handleDelete} />
       </div>
 
-      <BoardGrid boards={boards} onDelete={handleDelete} />
       {/* Footer */}
 
       <button className="newBoardBtn" onClick={handleOpenModal}>

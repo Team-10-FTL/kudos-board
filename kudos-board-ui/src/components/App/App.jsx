@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import viteLogo from "/vite.svg";
 import "./App.css";
-import BoardPage from "../../pages/BoardPage";
+import BoardPage from "../../pages/boardPage";
 import HomePage from "../../pages/homePage";
 import { CustomThemeProvider } from "../UISwitch/ThemeContext.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles"; 

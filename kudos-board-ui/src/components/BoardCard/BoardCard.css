@@ -21,6 +21,7 @@
 }
 .BoardCard:hover .board-name {
   font-size: 18pt;
+  color: var(--text-color);
 }
 .BoardCard:hover .media img {
   filter: brightness(100%);

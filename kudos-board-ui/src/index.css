@@ -64,6 +64,14 @@ footer {
   box-shadow: 0 2px 8px var(--shadow);
 }
 
+.card{
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  box-shadow: 0 2px 8px var(--shadow);
+  outline-color: var(--border-color);
+}
+
 .nav-bar {
   background-color: var(--header-bg);
   box-shadow: 0 2px 4px var(--shadow);

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import CreateBoardModal from "../components/CreateBoardModal/CreateBoardModal";
-import NavBar from "../components/Navbar/NavBar";
+import NavBar from "../components/NavBar/NavBar";
 
 
 function HomePage() {

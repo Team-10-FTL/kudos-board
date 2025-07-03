@@ -22,7 +22,7 @@
 /* Dark Mode */
 .dark-mode {
   --bg-color: #242424;
-  --text-color: rgba(67, 64, 64, 0.87);
+  --text-color: white;
   --header-bg: #1a1a1a;
   --card-bg: #333;
   --border-color: #555;
@@ -89,4 +89,3 @@ button {
 .newBoardBtn:hover {
   background-color: rgba(233, 82, 22, 0.954);
 }
-

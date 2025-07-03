@@ -64,7 +64,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 export default function UISwitch() {
   const { isDarkMode, toggleTheme } = useTheme();
   return (
-    <FormGroup>
+    <FormGroup className='UISwitch'>
       <FormControlLabel
         control={
           <MaterialUISwitch

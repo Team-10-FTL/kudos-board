@@ -2,35 +2,64 @@
 .BoardCard {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
   width: 220px;
   box-shadow: 0 2px 8px var(--shadow);
   overflow: hidden;
   transition: box-shadow 0.2s, background-color 0.3s ease;
   color: var(--text-color);
+  background: linear-gradient(
+    135deg,
+    rgba(244, 159, 62, 0.5) 00%,
+    rgba(248, 78, 214, 0.5) 100%
+  );
 }
 
 .BoardCard:hover {
-    box-shadow: 0 4px 16px var(--shadow);
+  box-shadow: 0 0 8px 2px rgba(244, 159, 62, 0.8),
+    0 0 16px 4px rgba(248, 138, 78, 0.7), 0 0 32px 8px rgba(244, 159, 62, 0.5);
+  filter: brightness(100%);
+}
+.BoardCard:hover .board-name {
+  font-size: 18pt;
+}
+.BoardCard:hover .media img {
+  filter: brightness(100%);
+  transition: filter 0.3s ease;
 }
 
 .media img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(65%);
+}
+.media {
+  position: relative;
 }
 
 .board-Info {
-    padding: 12px;
-    text-align: center;
-    color: var(--text-color);
+  padding: 12px;
+  text-align: center;
+  color: var(--text-color);
+  position: absolute;
+  top: 100px;
+  right: 50px;
 }
 
 .board-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0; 
-    color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-color);
+}
+.delete-btn {
+  position: absolute;
+  color: white;
+  cursor: pointer;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
 
+.board-Info a:hover {
+  color: red;
 }

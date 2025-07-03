@@ -3,7 +3,7 @@ import axios from "axios";
 import BoardGrid from "../components/BoardGrid/BoardGrid";
 import CreateBoardModal from "../components/CreateBoardModal/CreateBoardModal";
 import NavBar from "../components/NavBar/NavBar";
-
+import kudos from "../assets/kudos.png";
 
 function HomePage() {
   const [boards, setBoards] = useState([]);
@@ -26,31 +26,32 @@ function HomePage() {
     setBoards((prev) => prev.filter((board) => board.id !== id));
   };
 
-
-
   const handleOpenModal = async () => setIsModalOpen(true);
   const handleCloseModal = async () => setIsModalOpen(false);
 
   const handleBoardCreate = (newBoard) => {
-      setBoards((prev)=>[...prev, newBoard]);
-      setIsModalOpen(false);
-  }
-  
+    setBoards((prev) => [...prev, newBoard]);
+    setIsModalOpen(false);
+  };
 
   if (loading) return <div>Loading...</div>;
 
   return (
     <div>
       <header>
-        <h1>Home Page</h1>
+        <a href="/">
+          <img src={kudos} className="logo"></img>
+        </a>
 
-        <NavBar setBoards={setBoards}/>
-
+        <NavBar setBoards={setBoards} />
       </header>
       <div>
         <button onClick={handleOpenModal}>Add New Board</button>
       </div>
       <div>
+
+      {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
+      <div></div>
       {isModalOpen && (
         <CreateBoardModal 
         open={isModalOpen}
@@ -60,6 +61,18 @@ function HomePage() {
         )}
         <BoardGrid boards={boards} onDelete={handleDelete} />
       </div>
+        <CreateBoardModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          onBoardCreated={handleBoardCreate}
+        />
+      )}
+      <BoardGrid boards={boards} onDelete={handleDelete} />
+      {/* Footer */}
+
+      <button className="newBoardBtn" onClick={handleOpenModal}>
+        add new board +
+      </button>
       <footer>
         <p>&copy; 2025 Kudos Board. All rights reserved.</p>
       </footer>

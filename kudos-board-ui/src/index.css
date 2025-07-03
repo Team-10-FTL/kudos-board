@@ -16,7 +16,7 @@
   --header-bg: #e6e7e8;
   --card-bg: #fff;
   --border-color: #eee;
-  --shadow: rgba(0, 0, 0, 0.1);
+  /* --shadow: rgba(0, 0, 0, 0.1); */
 }
 
 /* Dark Mode */
@@ -75,10 +75,6 @@ button {
   padding: 5px;
 }
 
-.deleteBtn {
-  background-color: rgba(233, 82, 22, 0.954);
-}
-
 .newBoardBtn {
   right: 0;
   background-color: #ff914d;
@@ -89,4 +85,3 @@ button {
 .newBoardBtn:hover {
   background-color: rgba(233, 82, 22, 0.954);
 }
-

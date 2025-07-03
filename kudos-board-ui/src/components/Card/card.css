@@ -15,7 +15,7 @@
 
 .card .info {
   margin: 0 auto;
-  width: 85%;
+  width: 95%;
   overflow: hidden;
   height: 80px;
 }
@@ -31,12 +31,30 @@
 .card-info .upvoteBtn {
   margin-right: 10px;
 }
+
 .card-info .deleteBtn {
   margin-left: 10px;
+  border-radius: 3px;
+  background-color: darkgrey;
+  border: 1px solid black;
 }
 
+.card-info .deleteBtn:hover {
+  background-color: rgba(233, 82, 22, 0.954);
+}
+
+.card-info .upvoteBtn:hover {
+  background-image: linear-gradient(to right, #ff69b4, #ff914d);
+  border-radius: 3px;
+}
 .createCard {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  background-color: #ff914d;
+  border-radius: 5px;
+  height: 30px;
+}
+.createCard:hover {
+  background-color: rgba(233, 82, 22, 0.954);
 }
 .switch {
   right: 0;

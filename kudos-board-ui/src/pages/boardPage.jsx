@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import kudos from "../assets/kudos.png";
 import UISwitch from "../components/UISwitch/UISwitch.jsx";
+import "./BoardPage.css";
 
 const VITE_URL = import.meta.env.VITE_URL;
 
@@ -140,12 +141,11 @@ function BoardPage() {
             display: "flex",
             justifyContent: "center",
             margin: "20px 0",
+            marginTop: "-37px",
             gap: "20px",
           }}
         >
-          <div style={{ marginBottom: "20px" }}>
-            <UISwitch />
-          </div>
+          <UISwitch />
           <button className="createCard" onClick={openDialog}>
             Create Card
           </button>

@@ -2,6 +2,8 @@ import Card from "../components/Card/Card.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import kudos from "../assets/kudos.png";
+import UISwitch from "../components/UISwitch/UISwitch.jsx";
 
 const VITE_URL = import.meta.env.VITE_URL;
 
@@ -129,6 +131,12 @@ function BoardPage() {
 
   return (
     <>
+      <header>
+        <a href="/">
+          <img src={kudos} className="logo"></img>
+        </a>
+        <UISwitch />
+      </header>
       <button className="createCard" onClick={openDialog}>
         Create Card
       </button>
@@ -190,6 +198,9 @@ function BoardPage() {
         <button onClick={confirmAdd}>Add Card</button>
         <button onClick={closeDialog}>Cancel</button>
       </dialog>
+      <footer>
+        <p>&copy; 2025 Kudos Board. All rights reserved.</p>
+      </footer>
     </>
   );
 }

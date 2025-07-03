@@ -47,20 +47,20 @@ function Card({ card, addUpvote, onDelete }) {
           <span className="message">{card.message}</span>
         </div>
         <div className="gif">
-          <Link to={`/${card.id}`}>
-            {card.gif ? (
-              <img src={card.gif} alt="GIF cover" />
-            ) : (
-              <img src={defaultImg} alt="Default GIF cover" />
-            )}
-          </Link>
+          {/* <Link to={`/${card.id}`}> */}
+          {card.gif ? (
+            <img src={card.gif} alt="GIF cover" />
+          ) : (
+            <img src={defaultImg} alt="Default GIF cover" />
+          )}
+          {/* </Link> */}
         </div>
         <div className="buttons">
           <button className="upvoteBtn" onClick={addUpvote}>
-            Upvotes: {card.upvotes}
+            upvotes: {card.upvotes}
           </button>
           <button className="deleteBtn" onClick={openDialog}>
-            Delete
+            delete-
           </button>
           <dialog ref={dialogRef} onCancel={closeDialog}>
             <p>Are you sure you want to delete this card?</p>

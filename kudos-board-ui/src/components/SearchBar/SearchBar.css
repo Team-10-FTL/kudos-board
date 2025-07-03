@@ -2,14 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;  /* Space between input and button */
+  gap: 10px; /* Space between input and button */
   width: 100%;
-  max-width: 400px;
-  margin: 20px auto;  /* Center the search bar */
+  max-width: 300px;
+  margin: 20px auto; /* Center the search bar */
 }
 
 .search-bar {
-  flex: 1;  /* Takes up remaining space */
+  flex: 1; /* Takes up remaining space */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -18,12 +18,16 @@
 }
 
 .clearBtn {
-  padding: 5px 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  padding: 8px;
+  background-color: #ff914d;
+  color: black;
+  border: 2px black solid;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  flex-shrink: 0;  /* Prevents button from shrinking */
+  flex-shrink: 0; /* Prevents button from shrinking */
+}
+
+.clearBtn:hover {
+  background-color: rgba(233, 82, 22, 0.954);
 }

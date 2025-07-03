@@ -75,6 +75,7 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
+                                <div>
                                 <label>
                                     Title:
                                     <input 
@@ -84,6 +85,8 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                                         required
                                     />
                                 </label>
+                                </div>
+                                <div>
                                 <label>  
                                     Category:
                                     <select
@@ -97,6 +100,7 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                                         ))}
                                     </select>
                                 </label>
+                                </div>
                                 <div>
                                 <label>  
                                     Author:
@@ -106,6 +110,8 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                                         onChange={(e => setAuthor(e.target.value))}
                                     />
                                 </label>
+                                </div>
+                                <div>
                                 <label> 
                                     Image URL:
                                     <input 

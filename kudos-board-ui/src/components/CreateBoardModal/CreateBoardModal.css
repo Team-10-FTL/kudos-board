@@ -1,0 +1,186 @@
+
+        @import url('https://fonts.googleapis.com/css?family=Raleway');
+    
+        .modal-wrapper {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+        }
+    
+        .popup {
+            opacity: 0;
+            visibility: hidden;
+            height: 400px;
+            width: 400px;
+            flex-shrink: 0;
+            border-radius: 3px;
+            position: relative;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+    
+        .popup-inside {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 0 0 black;
+            transition:
+                box-shadow 0.5s ease 0.7s,
+                border-radius 0.35s ease 0.7s;
+        }
+    
+        .backgrounds {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+    
+        .background,
+        .background2,
+        .background3,
+        .background4,
+        .background5,
+        .background6 {
+            position: absolute;
+            left: var(--offset, 0);
+            right: var(--offset, 0);
+            bottom: var(--offset, 0);
+            top: var(--offset, 0);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: all 0.5s ease 0s;
+        }
+    
+        .background {
+            background: linear-gradient(to right, #FF6F00, #FF426B);
+            --offset: 0;
+        }
+    
+        .background2 {
+            background: linear-gradient(to right, #FC8230, #FF597D);
+            --offset: 10%;
+            transition-delay: 0.1s;
+        }
+    
+        .background3 {
+            background: linear-gradient(to right, #FFA366, #FF7D99);
+            --offset: 20%;
+            transition-delay: 0.2s;
+        }
+    
+        .background4 {
+            background: linear-gradient(to right, #FFBF94, #FFA1B5);
+            --offset: 30%;
+            transition-delay: 0.3s;
+        }
+    
+        .background5 {
+            background: linear-gradient(to right, #FFD6BA, #FFC9D5);
+            --offset: 40%;
+            transition-delay: 0.4s;
+        }
+    
+        .background6 {
+            background: white;
+            --offset: 40%;
+            z-index: 5;
+            transition: all 0.8s ease 0.4s;
+        }
+    
+        .content {
+            --offset: 0;
+            position: absolute;
+            left: var(--offset);
+            right: var(--offset);
+            bottom: var(--offset);
+            top: var(--offset);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.35s ease 0.75s;
+            z-index: 10;
+        }
+    
+        .content-wrapper {
+            text-align: center;
+            width: 100%;
+        }
+    
+        .modal-wrapper.active .popup {
+            opacity: 1;
+            visibility: visible;
+        }
+    
+        .modal-wrapper.active .popup-inside {
+            border-radius: 40px;
+            box-shadow: -50px 0 200px -50px #FF6F00, 50px 0 200px -50px #FF426B;
+        }
+    
+        .modal-wrapper.active .background,
+        .modal-wrapper.active .background2,
+        .modal-wrapper.active .background3,
+        .modal-wrapper.active .background4,
+        .modal-wrapper.active .background5 {
+            transform: scale(1);
+        }
+    
+        .modal-wrapper.active .background6 {
+            transform: scale(8);
+        }
+    
+        .modal-wrapper.active .content {
+            opacity: 1;
+            transform: none;
+        }
+
+    .modal-header {
+        font-family: 'Raleway';
+        font-style: normal;
+        padding: 2px 16px;
+        border-radius: 30px;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .close-button {
+        color: white;
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+        border-color: #FFD6BA;
+    }
+    
+    .close-button:hover, .close-button:focus {
+        color: #FFA366;
+        text-decoration: none;
+        cursor: pointer;   
+    }
+
+    .modal-body {
+        padding: 2px 16px;   
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        color: white;
+        border-radius: 40px;
+        }

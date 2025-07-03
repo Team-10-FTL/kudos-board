@@ -11,6 +11,7 @@ function CreateBoardModal({ onClose, onBoardCreated}){
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState("");
     const [categories, setCategories] = useState([]);
+    const [isActive, setIsActive] = useState(false); // state to track modal animation
     const VITE_URL = import.meta.env.VITE_URL;
 
 
@@ -20,8 +21,14 @@ function CreateBoardModal({ onClose, onBoardCreated}){
         .then(res => setCategories(res.data))
         .catch(()=> setCategories([]))
 
-    }, [VITE_URL])
+    }, [VITE_URL]);
 
+    // triggers animation on mount
+    useEffect(() => {
+        // timeout to ensure DOM is ready before adding class
+        const timer = setTimeout(() => setIsActive(true), 10);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -38,7 +45,7 @@ function CreateBoardModal({ onClose, onBoardCreated}){
                 categoryIds: [parseInt(categoryId, 10)],
                 author,
             });
-            onBoardCreated(response.data);// basically a call to update the board grid on page
+            onBoardCreated(response.data); // basically a call to update the board grid on page
             onClose();
         } catch (error) {
             setError("Failed to create the board")
@@ -46,58 +53,77 @@ function CreateBoardModal({ onClose, onBoardCreated}){
 
     };
 
-    // IN ORDER TO RUN THIS IN HOME PAGE, CREATE A BUTTON COMPONENT, PASS onClose and onBoardCreate PROPS IN THE PARENT HOMEPAGE COMPONENT
-    // you gotta show/hide this modal when the create button is clicked
-    // update the board grid in the parent when a new board is created
-
+    // ...existing code...
     return (
-        <div className="createBoardModal">
-            <div className="modal-content">
-                <button className="close-button" onClick={onClose}>X</button>
-                <h2>Create New Board</h2>
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Title:
-                        <input 
-                            type="text"
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Category:
-                        <select
-                            value={categoryId}
-                            onChange={e => setCategoryId(e.target.value)}
-                            required
-                        >
-                            <option value="">Select a category</option>
-                            {categories.map(cat => (
-                                <option key={cat.id} value={cat.id}>{cat.name}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        Author:
-                        <input 
-                            type="text"
-                            value={author}
-                            onChange={(e => setAuthor(e.target.value))}
-                        />
-                    </label>
-                    <label>
-                        Image URL:
-                        <input 
-                            type="text"
-                            value={imageUrl}
-                            onChange={e => setImageUrl(e.target.value)}
-                            required
-                        />
-                    </label>
-                    {error && <div className="error">{error}</div>}
-                    <button type="submit">Create Board</button>
-                </form>
+        <div className={`modal-wrapper${isActive ? " active" : ""}`}> {/* Always active when rendered */}
+            <div className="popup">
+                <div className="popup-inside">
+                    <div className="backgrounds">
+                        <div className="background"></div>
+                        <div className="background background2"></div>
+                        <div className="background background3"></div>
+                        <div className="background background4"></div>
+                        <div className="background background5"></div>
+                        <div className="background background6"></div>
+                    </div>
+                </div>
+                <div className="content">
+                    <div className="content-wrapper">
+                        <div className="modal-header">
+                            <button className="close-button" onClick={onClose}>X</button>
+                            <h2>Create New Board</h2>
+                        </div>
+                        <div className="modal-body">
+                            <form onSubmit={handleSubmit}>
+                                <label>
+                                    Title:
+                                    <input 
+                                        type="text"
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                <label>  
+                                    Category:
+                                    <select
+                                        value={categoryId}
+                                        onChange={e => setCategoryId(e.target.value)}
+                                        required
+                                    >
+                                        <option value="">  Select a category  </option>
+                                        {categories.map(cat => (
+                                            <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                        ))}
+                                    </select>
+                                </label>
+                                <div>
+                                <label>  
+                                    Author:
+                                    <input 
+                                        type="text"
+                                        value={author}
+                                        onChange={(e => setAuthor(e.target.value))}
+                                    />
+                                </label>
+                                <label> 
+                                    Image URL:
+                                    <input 
+                                        type="text"
+                                        value={imageUrl}
+                                        onChange={e => setImageUrl(e.target.value)}
+                                        required
+                                    />
+                                </label>
+                                </div>
+                                {error && <div className="error">{error}</div>}
+                                <div className="modal-footer">
+                                    <button type="submit"> Create Board </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -47,21 +47,19 @@ function HomePage() {
         <NavBar setBoards={setBoards}/>
 
       </header>
-
-      {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
       <div>
         <button onClick={handleOpenModal}>Add New Board</button>
       </div>
+      <div>
       {isModalOpen && (
         <CreateBoardModal 
         open={isModalOpen}
         onClose={handleCloseModal}
         onBoardCreated={handleBoardCreate}
-      />
-      )}
-      <BoardGrid boards={boards} onDelete={handleDelete} />
-      {/* Footer */}
-
+        />
+        )}
+        <BoardGrid boards={boards} onDelete={handleDelete} />
+      </div>
       <footer>
         <p>&copy; 2025 Kudos Board. All rights reserved.</p>
       </footer>

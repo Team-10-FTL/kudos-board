@@ -18,6 +18,7 @@ const SearchBar = ({ onChange, value, handleClearSearch }) => {
       <button type="button" className="clearBtn" onClick={handleClearSearch}>
         Clear
       </button>
+      <button type="button" className="clearBtn">Search</button>
     </div>
   );
 };

@@ -143,11 +143,11 @@ Deployed Application (optional): [Kudos Board Deployed Site](https://kudos-board
 ### Walkthrough Video
 
 <div>
-    <a href="https://www.loom.com/share/c56ac9daff5942a5b940f30b61fcff4c">
+    <a href="https://www.loom.com/share/bb494c5908d849d0aa7c7d95d67e6637">
       <p>Loom Message - 3 July 2025 - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/c56ac9daff5942a5b940f30b61fcff4c">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c56ac9daff5942a5b940f30b61fcff4c-b1235d390f72bbf9-full-play.gif">
+    <a href="https://www.loom.com/share/bb494c5908d849d0aa7c7d95d67e6637">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bb494c5908d849d0aa7c7d95d67e6637-a7fc5b1e08fd47cb-full-play.gif">
     </a>
   </div>
 

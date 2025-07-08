@@ -3,8 +3,10 @@ import axios from "axios";
 import "./BoardCard.css";
 
 function BoardCard({ board, onDelete }) {
+  // Move this outside of the component
   const VITE_URL = import.meta.env.VITE_URL;
 
+  // Error handling??
   const handleDelete = async () => {
     await axios.delete(`${VITE_URL}/boards/${board.id}`);
     onDelete(board.id);
@@ -18,6 +20,7 @@ function BoardCard({ board, onDelete }) {
           {board.imageUrl ? (
             <img src={board.imageUrl} alt="board cover" />
           ) : (
+            // No back up image?
             <img src={"THISISADEFAULTROUTE"} alt="board cover" />
           )}
         </Link>

@@ -16,10 +16,12 @@ export default function FilterDropDown({handleChange}) {
     
     const handleSelectChange = (event) => {
         const selectedValue = event.target.value;
+        // could just insert into the setCategory function
         setCategory(selectedValue);  
         handleChange(event);       
     };
 
+    // Spacing on this is weird, do you have prettier? 
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -73,6 +75,7 @@ export default function FilterDropDown({handleChange}) {
                         }
                     }}
                 >
+            // Lets make the values not capitalized. 
           <MenuItem value={"All"}>All</MenuItem>
           <MenuItem value={"Recent"}>Recent</MenuItem>
           <MenuItem value={"Celebration"}>Celebration</MenuItem>

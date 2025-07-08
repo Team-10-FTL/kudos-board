@@ -91,7 +91,7 @@ function BoardPage() {
     }
   };
 
-  //add functionality
+  // add functionality
   const confirmAdd = async () => {
     try {
       const res = await axios.post(`${VITE_URL}/cards`, {
@@ -122,6 +122,7 @@ function BoardPage() {
       const res = await axios.put(`${VITE_URL}/cards/${card.id}`);
       const updatedCard = res.data;
 
+      // I don't think you need to do this, you can just +1 on the UI and update on the back-end so that when the user refreshes the page the upvotes are correct
       setCards((prevCards) =>
         prevCards.map((c) => (c.id === updatedCard.id ? updatedCard : c))
       );
@@ -170,6 +171,7 @@ function BoardPage() {
         )}
       </div>
       <dialog ref={dialogRef} onCancel={closeDialog}>
+        // Remove these
         Message:{" "}
         <input
           type="text"
@@ -179,6 +181,7 @@ function BoardPage() {
           }}
           required
         ></input>
+        // Remove these
         Search for GIF:{" "}
         <input
           onClick={fetchGifs}

@@ -7,9 +7,10 @@ exports.getCards = async (req, res) => {
   res.json(cards);
 };
 
-// add card (by id)
+// add card (by id) Make more descriptive "getCardById"
 exports.getCard = async (req, res) => {
   try {
+    // This is inside vs outside try catch in other functions
     const id = Number(req.params.id);
     const card = await prisma.card.findUnique({ where: { id } });
     res.json(card);
@@ -51,6 +52,7 @@ exports.upvoteCard = async (req, res) => {
 };
 
 // delete card
+// Make more descriptive && name function more descriptive
 exports.remove = async (req, res) => {
   try {
     const id = Number(req.params.id);

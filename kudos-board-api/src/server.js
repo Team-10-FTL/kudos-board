@@ -3,13 +3,13 @@ const app = express();
 require("dotenv").config();
 const boardRoutes = require("../routes/boardRoutes");
 const cardRoutes = require("../routes/cardRoutes");
-const categoryRoutes = require('../routes/categoryRoutes');
-const cors= require('cors')
+const categoryRoutes = require("../routes/categoryRoutes");
+const cors = require("cors");
 
-
-app.use(cors())
+app.use(cors());
 const PORT = process.env.PORT || 5000;
 
+// Delete this bc you're no longer using it
 app.get("/", (req, res) => {
   try {
     res.send("Hello World");
@@ -22,9 +22,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use("/boards", boardRoutes);
 app.use("/cards", cardRoutes);
-app.use('/categories', categoryRoutes);
-
-
+app.use("/categories", categoryRoutes);
 
 app.listen(PORT, () => {
   try {

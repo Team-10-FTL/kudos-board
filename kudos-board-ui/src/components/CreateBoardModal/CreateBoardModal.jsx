@@ -3,18 +3,22 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./CreateBoardModal.css";
 
-function CreateBoardModal({ onClose, onBoardCreated}){
+// Make VITE URL  more descriptive
+// Make the button disbled when form is not valid 
 
+function CreateBoardModal({ onClose, onBoardCreated}){
+    // Put form data into one state 
     const [title, setTitle] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [author, setAuthor] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [error, setError] = useState("");
     const [categories, setCategories] = useState([]);
+    // Rename this to be more descriptive about relation to animation 
     const [isActive, setIsActive] = useState(false); // state to track modal animation
     const VITE_URL = import.meta.env.VITE_URL;
 
-
+// spacing
     useEffect(() => {
 
         axios.get(`${VITE_URL}/categories`)
@@ -34,6 +38,8 @@ function CreateBoardModal({ onClose, onBoardCreated}){
         e.preventDefault();
 
         if (!title.trim() || !categoryId.trim()){
+            // this could be more specific as to which one is required...
+            // Could also use the input required attribute
             setError("Title and Category are required")
             return;
         }
@@ -53,8 +59,10 @@ function CreateBoardModal({ onClose, onBoardCreated}){
 
     };
 
+    // What is the purpose of this comment? 
     // ...existing code...
     return (
+        // Don't need to conditionally render the class since you're conditionally rendering the modal w state
         <div className={`modal-wrapper${isActive ? " active" : ""}`}> {/* Always active when rendered */}
             <div className="popup">
                 <div className="popup-inside">

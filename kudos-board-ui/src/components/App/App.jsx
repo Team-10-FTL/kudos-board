@@ -32,6 +32,9 @@ function AppContent() {
       <div>
         <BrowserRouter>
           <Routes>
+            {/* 
+            Curious about /homepage vs /homepage/:id
+            */}
             <Route path="/" element={<HomePage />} />
             <Route path="/homepage/:id" element={<BoardPage />} />
           </Routes>

@@ -2,6 +2,7 @@ import BoardCard from "../BoardCard/BoardCard";
 import "./BoardGrid.css"
 
 function BoardGrid({ boards, onDelete }) {
+  // Delete these console logs 
   console.log("Boards: ", boards);
   console.log("type of boards" + typeof boards);
   return (
@@ -10,6 +11,8 @@ function BoardGrid({ boards, onDelete }) {
         <BoardCard key={board.id} board={board} onDelete={onDelete} />
       ))}
     </div>
+
+    // No empty state
   );
 }
 

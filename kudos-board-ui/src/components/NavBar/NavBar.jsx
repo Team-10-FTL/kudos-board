@@ -3,8 +3,12 @@ import SearchBar from "../SearchBar/SearchBar"
 import { useState } from "react";
 import FilterDropDown from "../FilterDropDown/FilterDropDown";
 import UISwitch from "../UISwitch/UISwitch";
+
+// Use the category table to populate the filter dropdown
 const NavBar = ({setBoards}) =>{
-    const VITE_URL = import.meta.env.VITE_URL;  
+    const VITE_URL = import.meta.env.VITE_URL;
+    // Rename this to query perhaps
+    // You could move these to the app and filter there so that way you don't have to make api calls to sort + search
     const [boardTitle, setBoardTitle] = useState("");
     const [category, setCategory] = useState("All")
 
@@ -39,6 +43,7 @@ const NavBar = ({setBoards}) =>{
         console.log(err.message);
         }
     };
+    
     const handleFilterChange = async(e)=>{
         try {
             const selectedCategory = e.target.value

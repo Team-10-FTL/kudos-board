@@ -11,7 +11,9 @@ function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const VITE_URL = import.meta.env.VITE_URL;
 
+  // Error handling
   useEffect(() => {
+    // Set loading true before the request is made
     axios
       .get(`${VITE_URL}/boards`)
       .then((res) => {
@@ -24,7 +26,8 @@ function HomePage() {
   const handleDelete = (id) => {
     setBoards((prev) => prev.filter((board) => board.id !== id));
   };
-
+  
+// These don't need to be async, you can just set the state directly. 
   const handleOpenModal = async () => setIsModalOpen(true);
   const handleCloseModal = async () => setIsModalOpen(false);
 
@@ -32,7 +35,8 @@ function HomePage() {
     setBoards((prev) => [...prev, newBoard]);
     setIsModalOpen(false);
   };
-
+  
+  // Maybe return something besides a simple text div
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -41,9 +45,11 @@ function HomePage() {
         <a href="/">
           <img src={kudos} className="logo"></img>
         </a>
-
         <NavBar setBoards={setBoards} />
       </header>
+      {/* 
+      Maybe wrap this in a main instead of a div
+      */}
       <div>
         {/* FOR FUTURE REFERENCE!! Header, Banner, Search bar go here */}
         <div></div>
@@ -56,7 +62,9 @@ function HomePage() {
         )}
         <BoardGrid boards={boards} onDelete={handleDelete} />
       </div>
-
+      {/* 
+      This should be put inside the main content div
+      */}
       <button className="newBoardBtn" onClick={handleOpenModal}>
         add new board +
       </button>
